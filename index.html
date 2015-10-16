@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>RSS TEST</title>
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+</head>
+<body>
+<button onclick="getData()">GET DATA</button>
+<form action="http://localhost:9000/addFeed" method="post">
+  <input type="text" id="feedToAdd" name="feed">
+  <input type="button" id="addFeed" value="Submit">
+</form>
+
+<script type="text/javascript">
+
+var cbb = {};
+var rssFeed = []
+rssFeed[0] = "cbb";
+rssFeed[1] = "smash";
+rssFeed[2] = "presse";
+var getData = function(feed){$.ajax
+({
+  traditional:true,
+  type: "POST",
+  url: "http://localhost:9000",
+  data:{feed: rssFeed},
+  crossDomain:true, 
+  dataType: "json",
+ }).done(function ( data ) {
+  rssResponse = data;
+   })
+}
+
+$("#addFeed").click(function(){
+  $.ajax({
+    traditional:true,
+    type: "POST",
+    url: "http://localhost:9000/addFeed",
+    data:{feed: $("#feedToAdd").val()},
+    crossDomain:true, 
+    dataType: "json"
+  }).done(function( data ){
+    success = true;
+  })
+})
+
+</script>
+	
+</body>
+</html>
